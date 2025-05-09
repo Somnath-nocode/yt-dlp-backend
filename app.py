@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import yt_dlp
+import os
 
 app = Flask(__name__)
 
@@ -32,4 +33,5 @@ def download_video():
 
 # Only used in local development — Render runs its own server
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
